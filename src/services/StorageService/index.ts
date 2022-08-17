@@ -9,7 +9,7 @@ export enum storageType {
     localStorage,
 }
 
-export function storageService(type: storageType): IStorageService {
+export function newStorageService(type: storageType): IStorageService {
     switch (type) {
         case storageType.localStorage:
             return new LocalStorageService();

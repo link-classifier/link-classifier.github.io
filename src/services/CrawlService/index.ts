@@ -7,7 +7,7 @@ export enum crawlType {
     clientCrawling,
 }
 
-export function crawlService(type: crawlType): ICrawlingService {
+export function newCrawlService(type: crawlType): ICrawlingService {
     switch (type) {
         case crawlType.clientCrawling:
             return clientCrawling;
@@ -19,9 +19,10 @@ export function crawlService(type: crawlType): ICrawlingService {
 async function emptyCrawling(url: string): Promise<CrawlingData | null> {
     console.log(url)
     return {
+        title: "empty",
         content: ["empty"],
         favicon: "empty",
-        metas: ["empty"],
+        metas: [],
         url: url,
     }
 }

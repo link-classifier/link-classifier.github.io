@@ -7,7 +7,7 @@ export enum classificationType {
     simple,
 }
 
-export function classificationService(type: classificationType): IClassificationService {
+export function newClassificationService(type: classificationType): IClassificationService {
     switch (type) {
         case classificationType.simple:
             return simpleClassification;
@@ -19,8 +19,9 @@ export function classificationService(type: classificationType): IClassification
 function emptyClassification(rawData: CrawlingData): ClassifiedData {
     console.log(rawData)
     return {
+        title: rawData.title,
         favicon: rawData.favicon,
-        host: "empty",
+        category: "empty",
         keywords: ["empty"],
         url: rawData.url
     }

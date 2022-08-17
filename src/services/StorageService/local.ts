@@ -10,6 +10,6 @@ export class LocalStorageService implements IStorageService {
     }
 
     set(key: string, value: any): void {
-        window.localStorage.setItem(key, value);
+        window.localStorage.setItem(key, JSON.stringify(value));
     }
 }

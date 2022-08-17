@@ -11,11 +11,12 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import LinkIcon from '@mui/icons-material/Link';
+import LanguageIcon from '@mui/icons-material/Language';
 
 export interface UrlItemProps {
-    favicon: string,
+    title: string,
+    favicon: string | null,
     alt: string,
-    host: string,
     url: string,
     keywords: string[],
 }
@@ -66,12 +67,15 @@ export default function URLList({header, items, itemOnClick}: ListProps) {
                                         onClick={(event) => handleListItemClick(event, item.url)}
                                     >
                                         <ListItemAvatar>
-                                            <Avatar
-                                                alt={item.alt}
-                                                src={item.favicon}
-                                            />
+                                            {item.favicon !== null ?
+                                                <Avatar
+                                                    alt={item.alt}
+                                                    src={item.favicon}
+                                                /> :
+                                                <LanguageIcon/>
+                                            }
                                         </ListItemAvatar>
-                                        <ListItemText id={labelId} primary={item.url}/>
+                                        <ListItemText id={labelId} primary={item.title}/>
                                         {item.keywords.map((keyword) =>
                                             <Chip key={keyword} label={keyword} color="primary" variant="outlined"/>
                                         )}

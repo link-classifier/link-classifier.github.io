@@ -12,9 +12,9 @@ function Classification({classifiedDataList}: ClassificationProps) {
     const urlItemOnClick = urlService(urlType.urlHref);
     const translateData = (data: ClassifiedData): UrlItemProps => {
         return {
-            alt: data.host,
+            title: data.title,
+            alt: data.title,
             favicon: data.favicon,
-            host: data.host,
             keywords: data.keywords,
             url: data.url
         }

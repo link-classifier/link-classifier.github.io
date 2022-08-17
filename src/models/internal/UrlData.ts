@@ -2,17 +2,24 @@ export type Category = string;
 
 export interface CrawlingData {
     // necessary data
+    title: string,
     url: string,
-    favicon: string,
+    favicon: string | null,
     // for classification data
-    metas: string[],
+    metas: MetaData[],
     content: string[],
 }
 
+export interface MetaData {
+    name: string,
+    content: string,
+}
+
 export interface ClassifiedData {
+    title: string,
     url: string,
-    host: string,
-    favicon: string,
+    category: string,
+    favicon: string | null,
     keywords: string[],
 }
 
