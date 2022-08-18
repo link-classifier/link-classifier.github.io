@@ -43,6 +43,7 @@ export function keywordExtractorClassification(rawData: CrawlingData): Classifie
             url: rawData.url
         }
     }
+    console.log(items);
     return {
         title: rawData.title,
         favicon: rawData.favicon,

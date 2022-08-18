@@ -62,8 +62,10 @@ function parseContent(doc: Document): string[] {
     let docs = Array.from(doc.getElementsByTagName("article"));
     if (docs.length < 1) {
         return Array.from(document.body.childNodes).filter((node) => node.nodeName === "DIV")
-            .map((node) => node.textContent !== null ? node.textContent : "");
+            .map((node) => node.textContent !== null ? node.textContent.replace(/[\t\n ]/g, "") : "")
+            .filter((text) => text !== "");
     }
 
-    return docs.map((tag) => tag.textContent !== null ? tag.textContent : "");
+    return docs.map((tag) => tag.textContent !== null ? tag.textContent.replace(/[\t\n ]/g, "") : "")
+        .filter((text) => text !== "");
 }
