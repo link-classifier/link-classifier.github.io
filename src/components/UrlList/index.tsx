@@ -46,21 +46,21 @@ export default function URLList({header, items, itemOnClick}: ListProps) {
 
     return (
         <List dense sx={{width: '100%', maxWidth: 700, margin: "1em", bgcolor: 'background.paper'}}>
-            {items.map((item) => {
-                const labelId = `url-list-label-${item.url}`;
+            <ListItemButton onClick={handleListHeaderClick}>
+                <ListItemIcon>
+                    <LinkIcon/>
+                </ListItemIcon>
+                <ListItemText primary={header}/>
+                {open ? <ExpandLess/> : <ExpandMore/>}
+            </ListItemButton>
+            {items.map((item, i) => {
+                const labelId = `url-list-label-${item.url}-${i}`;
                 return (
                     <div key={item.url}>
-                        <ListItemButton onClick={handleListHeaderClick}>
-                            <ListItemIcon>
-                                <LinkIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={header}/>
-                            {open ? <ExpandLess/> : <ExpandMore/>}
-                        </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem
-                                    key={item.url}
+                                    key={labelId}
                                     disablePadding
                                 >
                                     <ListItemButton

@@ -59,9 +59,11 @@ function parseFavicon(doc: Document, url: string): string | null {
 }
 
 function parseContent(doc: Document): string[] {
-    // TODO: article을 안 쓰는곳이 너무 많다 ㅋㅋㅋ
-    // return [doc.body]
-    //     .map((tag) => tag.textContent !== null ? tag.textContent : "");
-    return Array.from(doc.getElementsByTagName("article"))
-        .map((tag) => tag.textContent !== null ? tag.textContent : "");
+    let docs = Array.from(doc.getElementsByTagName("article"));
+    if (docs.length < 1) {
+        return Array.from(document.body.childNodes).filter((node) => node.nodeName === "DIV")
+            .map((node) => node.textContent !== null ? node.textContent : "");
+    }
+
+    return docs.map((tag) => tag.textContent !== null ? tag.textContent : "");
 }

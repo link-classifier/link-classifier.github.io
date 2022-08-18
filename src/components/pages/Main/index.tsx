@@ -11,7 +11,7 @@ function Main() {
     const [dataList, setDataList] = useState<ClassifiedDataList[]>([]);
     const crawlService = newCrawlService(crawlType.clientCrawling);
     const storageService = newStorageService(storageType.localStorage);
-    const classificationService = newClassificationService(classificationType.simple);
+    const classificationService = newClassificationService(classificationType.keywordExtractor);
     const onPutData = (url: string) => {
         crawlService(url).then((data) => {
             if (data === null) {
@@ -20,16 +20,25 @@ function Main() {
             const classifiedData = classificationService(data);
             const newDatalist = [...dataList];
             let updated = false;
+            let dataExists = false;
             for (let i = 0; i < newDatalist.length; i++) {
                 if (newDatalist[i].category === classifiedData.category) {
-                    // TODO 기존에 있는 데이터라면 업데이트되도록 수정
                     /// TODO 아예 서비스로 빼도 될듯
-                    newDatalist[i].dataList.push(classifiedData)
-                    updated = true;
+                    for (let j = 0; j < newDatalist[i].dataList.length; j++) {
+                        if (newDatalist[i].dataList[j].url === classifiedData.url) {
+                            newDatalist[i].dataList[j] = classifiedData;
+                            dataExists = true;
+                        }
+                    }
+                    // 값이
+                    if (!dataExists) {
+                        newDatalist[i].dataList.push(classifiedData)
+                        updated = true;
+                    }
                     break;
                 }
             }
-            if (!updated) {
+            if (!updated && !dataExists) {
                 newDatalist.push({
                     category: classifiedData.category,
                     dataList: [classifiedData],

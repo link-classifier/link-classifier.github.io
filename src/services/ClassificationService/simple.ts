@@ -43,7 +43,7 @@ export function simpleClassification(rawData: CrawlingData): ClassifiedData {
     });
 
     console.log(items.slice(0, 5));
-    if (items.length < 4) {
+    if (items.length < 1) {
         return {
             title: rawData.title,
             favicon: rawData.favicon,
