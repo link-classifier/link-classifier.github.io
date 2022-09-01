@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import React, {useState} from 'react';
-import Classification from "../../../feature/Classification";
-import UrlStore from "../../../feature/UrlStore";
-import {crawlType, newCrawlService} from "../../../services/CrawlService";
-import {newStorageService, storageType} from "../../../services/StorageService";
-import {newClassificationService, classificationType} from "../../../services/ClassificationService";
-import {ClassifiedDataList} from "../../../models";
+import Classification from "../../feature/Classification";
+import UrlStore from "../../feature/UrlStore";
+import {crawlType, newCrawlService} from "../../services/CrawlService";
+import {newStorageService, storageType} from "../../services/StorageService";
+import {newClassificationService, classificationType} from "../../services/ClassificationService";
+import {ClassifiedDataList} from "../../models";
 
 function Main() {
     const [dataList, setDataList] = useState<ClassifiedDataList[]>([]);
@@ -53,7 +53,6 @@ function Main() {
 
     return (
         <Box sx={{
-            bgcolor: 'text.disabled',
             minHeight: '100vh',
             paddingTop: "5em",
             alignItems: "center",

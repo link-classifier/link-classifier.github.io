@@ -37,10 +37,7 @@ export default function UrlInput({onPutData}: UrlInputProps) {
     };
 
     return (
-        <Paper
-            component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 700 }}
-        >
+        <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 700 }}>
             <IconButton sx={{ p: '10px' }} aria-label="menu">
                 <MenuIcon />
             </IconButton>

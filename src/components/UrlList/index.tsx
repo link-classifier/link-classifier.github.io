@@ -45,7 +45,14 @@ export default function URLList({header, items, itemOnClick}: ListProps) {
     };
 
     return (
-        <List dense sx={{width: '100%', maxWidth: 700, margin: "1em", bgcolor: 'background.paper'}}>
+        <List dense sx={{
+            width: '100%',
+            boxShadow: 3,
+            borderRadius: 2,
+            maxWidth: 700,
+            margin: "1em",
+            bgcolor: 'background.paper'
+        }}>
             <ListItemButton onClick={handleListHeaderClick}>
                 <ListItemIcon>
                     <LinkIcon/>
@@ -77,7 +84,11 @@ export default function URLList({header, items, itemOnClick}: ListProps) {
                                         </ListItemAvatar>
                                         <ListItemText id={labelId} primary={item.title}/>
                                         {item.keywords.map((keyword) =>
-                                            <Chip key={keyword} label={keyword} color="primary" variant="outlined"/>
+                                            <Chip sx={{
+                                                boxShadow: 1,
+                                                borderRadius: 2,
+                                                margin: ".3em",
+                                            }} key={keyword} label={keyword} color="primary" variant="outlined"/>
                                         )}
                                     </ListItemButton>
                                 </ListItem>
