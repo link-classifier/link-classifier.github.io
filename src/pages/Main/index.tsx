@@ -7,7 +7,7 @@ import {newStorageService, storageType} from "../../services/StorageService";
 import {newClassificationService, classificationType} from "../../services/ClassificationService";
 import {ClassifiedDataList} from "../../models";
 
-function Main() {
+export default function Main() {
     const [dataList, setDataList] = useState<ClassifiedDataList[]>([]);
     const crawlService = newCrawlService(crawlType.clientCrawling);
     const storageService = newStorageService(storageType.localStorage);
@@ -66,5 +66,3 @@ function Main() {
         </Box>
     );
 }
-
-export default Main;

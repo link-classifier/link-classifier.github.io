@@ -6,7 +6,7 @@ export interface UrlStoreProps {
     onPutData: (s: string) => void,
 }
 
-function UrlStore({onPutData}: UrlStoreProps) {
+export default function UrlStore({onPutData}: UrlStoreProps) {
     // TODO: Service는 feature 외부에서 주입하도록 수정
     return (
         <>
@@ -14,5 +14,3 @@ function UrlStore({onPutData}: UrlStoreProps) {
         </>
     );
 }
-
-export default UrlStore;
