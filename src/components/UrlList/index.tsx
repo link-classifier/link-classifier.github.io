@@ -46,7 +46,7 @@ export default function URLList({header, items, itemOnClick}: ListProps) {
 
     return (
         <List dense sx={{
-            width: '100%',
+            width: 700,
             boxShadow: 3,
             borderRadius: 2,
             maxWidth: 700,

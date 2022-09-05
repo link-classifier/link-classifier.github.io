@@ -37,24 +37,24 @@ export default function UrlInput({onPutData}: UrlInputProps) {
     };
 
     return (
-        <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 700, mt: '1em' }}>
-            <IconButton sx={{ p: '10px' }} aria-label="menu">
-                <MenuIcon />
+        <Paper sx={{p: '2px 4px', display: 'flex', alignItems: 'center', width: 700, margin: '.7em', mt: '2.5em'}}>
+            <IconButton sx={{p: '10px'}} aria-label="menu">
+                <MenuIcon/>
             </IconButton>
             <InputBase
-                sx={{ ml: 1, flex: 1 }}
+                sx={{ml: 1, flex: 1}}
                 placeholder="Put url to classify"
                 onChange={handleItemChange}
                 onKeyPress={handleEnter}
                 value={url}
             />
-            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <Divider sx={{height: 28, m: 0.5}} orientation="vertical"/>
             <IconButton
                 color="primary"
-                sx={{ p: '10px' }} aria-label="directions"
+                sx={{p: '10px'}} aria-label="directions"
                 onClick={handleItemInput}
             >
-                <AssignmentReturnedIcon />
+                <AssignmentReturnedIcon/>
             </IconButton>
         </Paper>
     );

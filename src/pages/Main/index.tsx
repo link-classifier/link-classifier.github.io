@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import React, {useState} from 'react';
-import Classification from "../../feature/Classification";
-import UrlStore from "../../feature/UrlStore";
+import Classification from "../../feature/URLClassification";
 import {crawlType, newCrawlService} from "../../services/CrawlService";
 import {newStorageService, storageType} from "../../services/StorageService";
 import {newClassificationService, classificationType} from "../../services/ClassificationService";
@@ -61,8 +60,7 @@ export default function Main() {
             display: "flex",
             flexDirection: "column"
         }}>
-            <UrlStore onPutData={onPutData}/>
-            <Classification classifiedDataList={dataList}/>
+            <Classification classifiedDataList={dataList} onPutData={onPutData}/>
         </Box>
     );
 }

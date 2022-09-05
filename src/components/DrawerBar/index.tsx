@@ -16,8 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import AddIcon from '@mui/icons-material/Add';
+import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 
 const drawerWidth = 240;
 
@@ -90,7 +90,23 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function DrawerBar() {
+interface Feature {
+    title: string,
+    onClick: () => Promise<void>,
+}
+
+interface Workspace {
+    title: string,
+    onClick: () => Promise<void>,
+}
+
+export interface DrawerBarProps {
+    features: Feature[],
+    workspaces: Workspace[],
+    children: React.ReactNode,
+}
+
+export default function DrawerBar({features, workspaces, children}: DrawerBarProps) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -101,15 +117,10 @@ export default function DrawerBar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    /**
-     * background: #00E0EE;
-     background: -webkit-linear-gradient(to left, #00E0EE, #AD00FE);
-     background: linear-gradient(to left, #00E0EE, #AD00FE);
-     */
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
+        <Box>
+            {/*<CssBaseline />*/}
             <AppBar position="fixed" open={open} sx={{ bgcolor: "#498ab9", color: "#ffffff" }}>
                 <Toolbar>
                     <IconButton
@@ -137,9 +148,10 @@ export default function DrawerBar() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['New Workspace'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                    {features.map((feature) => (
+                        <ListItem key={feature.title} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
+                                onClick={feature.onClick}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
@@ -153,19 +165,20 @@ export default function DrawerBar() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    {/* TODO: 각 기능별 icon 매핑 */}
+                                    <AddIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary={feature.title} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
                 <Divider />
                 <List>
-                    {/*TODO: 입력으로 받아야 함*/}
-                    {['Develop', 'Blockchain', 'Network'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                    {workspaces.map((workspace, index) => (
+                        <ListItem key={workspace.title} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
+                                onClick={workspace.onClick}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
@@ -179,14 +192,17 @@ export default function DrawerBar() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    <DeveloperBoardIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary={workspace.title} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
+            <>
+                {children}
+            </>
         </Box>
     );
 }
